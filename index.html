@@ -27,18 +27,8 @@
   #last-update{font-size:11px;color:rgba(255,255,255,0.4);margin-top:6px;}
   #fecha-actual{font-size:26px;font-weight:700;color:#f97316;margin:14px 0;text-transform:capitalize;}
   #error-banner{display:none;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:10px;padding:12px 18px;margin-bottom:20px;font-size:13px;color:#fca5a5;}
-  .kpi-single{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 20px;margin-bottom:18px;position:relative;overflow:hidden;}
-  .kpi-single::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;background:linear-gradient(90deg,var(--accent),var(--accent2));}
-  .kpi-single .kpi-label{font-size:18px;font-weight:800;text-transform:uppercase;color:#fff;margin-bottom:12px;letter-spacing:0.4px;}
-  .kpi-single .kpi-value{font-size:80px;font-weight:800;line-height:1;color:var(--accent);}
   .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px 20px;margin-bottom:18px;}
   .card-title{font-size:18px;font-weight:800;text-transform:uppercase;color:#fff;margin-bottom:18px;letter-spacing:0.4px;}
-  .bar-list{display:flex;flex-direction:column;gap:10px;}
-  .bar-item{display:flex;flex-direction:column;gap:4px;text-align:left;}
-  .bar-label{font-size:13px;font-weight:700;color:#fff;display:flex;justify-content:space-between;}
-  .bar-label span{color:rgba(255,255,255,0.55);font-weight:400;}
-  .bar-track{height:10px;background:var(--surface2);border-radius:5px;overflow:hidden;}
-  .bar-fill{height:100%;border-radius:5px;transition:width 0.6s ease;}
   .donut-container{display:flex;flex-direction:column;align-items:center;gap:28px;}
   .donut-svg-wrap{width:100%;display:flex;justify-content:center;}
   .donut-legend{display:flex;flex-direction:column;gap:14px;align-items:flex-start;width:100%;padding:0 8px;}
@@ -56,11 +46,6 @@
   .tl-name{font-weight:700;color:#fff;min-width:70px;}
   .tl-text{color:rgba(255,255,255,0.8);flex:1;line-height:1.4;}
   footer{margin-top:24px;font-size:11px;color:rgba(255,255,255,0.35);}
-  .skeleton{display:inline-block;background:linear-gradient(90deg,var(--surface2) 25%,var(--surface) 50%,var(--surface2) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px;height:64px;width:120px;}
-  @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-  .tab-row{display:flex;gap:8px;margin-bottom:16px;justify-content:center;flex-wrap:wrap;}
-  .tab-btn{background:var(--surface2);border:1px solid var(--border);color:rgba(255,255,255,0.6);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;padding:6px 16px;border-radius:20px;cursor:pointer;}
-  .tab-btn.active{background:var(--accent);border-color:var(--accent);color:#0a0e1a;}
   .no-data{color:rgba(255,255,255,0.35);font-size:13px;padding:12px 0;}
 </style>
 </head>
@@ -78,42 +63,43 @@
   <div id="error-banner"></div>
   <div id="fecha-actual"></div>
 
-  <!-- TOTAL -->
-  <div class="kpi-single">
-    <div class="kpi-label">Total de registros</div>
-    <div class="kpi-value" id="kpi-total"><div class="skeleton"></div></div>
-  </div>
-
-  <!-- COL G: SERVICIOS (donut) -->
+  <!-- COL G: SERVICIOS -->
   <div class="card">
     <div class="card-title">Servicios utilizados</div>
     <div class="donut-container">
-      <div class="donut-svg-wrap">
-        <svg id="donut-svg" viewBox="0 0 300 300" style="width:100%;max-width:360px;height:auto"></svg>
-      </div>
-      <div class="donut-legend" id="donut-legend"></div>
+      <div class="donut-svg-wrap"><svg id="donut-g" viewBox="0 0 300 300" style="width:100%;max-width:360px;height:auto"></svg></div>
+      <div class="donut-legend" id="legend-g"></div>
     </div>
   </div>
 
   <!-- COL H -->
   <div class="card">
     <div class="card-title">¿En qué es mejor Mall Marina?</div>
-    <div class="bar-list" id="bars-h"></div>
+    <div class="donut-container">
+      <div class="donut-svg-wrap"><svg id="donut-h" viewBox="0 0 300 300" style="width:100%;max-width:360px;height:auto"></svg></div>
+      <div class="donut-legend" id="legend-h"></div>
+    </div>
   </div>
 
   <!-- COL I -->
   <div class="card">
-    <div class="card-title">Mayor aporte de Mall Marina en CicloRecreoVía</div>
-    <div class="bar-list" id="bars-i"></div>
+    <div class="card-title">Mayor aporte en CicloRecreoVía</div>
+    <div class="donut-container">
+      <div class="donut-svg-wrap"><svg id="donut-i" viewBox="0 0 300 300" style="width:100%;max-width:360px;height:auto"></svg></div>
+      <div class="donut-legend" id="legend-i"></div>
+    </div>
   </div>
 
-  <!-- COL J: tabs para otros eventos vs solo CRV -->
+  <!-- COL J -->
   <div class="card">
     <div class="card-title">Participa en otros eventos deportivos</div>
-    <div class="bar-list" id="bars-j"></div>
+    <div class="donut-container">
+      <div class="donut-svg-wrap"><svg id="donut-j" viewBox="0 0 300 300" style="width:100%;max-width:360px;height:auto"></svg></div>
+      <div class="donut-legend" id="legend-j"></div>
+    </div>
   </div>
 
-  <!-- ULTIMOS COMENTARIOS COL K -->
+  <!-- COMENTARIOS COL K -->
   <div class="card">
     <div class="card-title">Últimos comentarios</div>
     <div class="timeline-list" id="timeline-comments"></div>
@@ -167,13 +153,12 @@ function parseCSV(text){
   return rows;
 }
 
-function countMap(rows, colIdx, multi){
-  // multi: split by semicolon or comma
+function countMap(rows,colIdx,multi){
   var map={};
   for(var i=0;i<rows.length;i++){
     var val=(rows[i][colIdx]||'').trim();
     if(!val) continue;
-    var parts = multi ? val.split(/[;,]/).map(function(s){return s.trim();}).filter(Boolean) : [val];
+    var parts=multi?val.split(/[;,]/).map(function(s){return s.trim();}).filter(Boolean):[val];
     for(var j=0;j<parts.length;j++){
       var k=parts[j];
       if(k) map[k]=(map[k]||0)+1;
@@ -186,18 +171,24 @@ function sortedEntries(map){
   return Object.entries(map).sort(function(a,b){return b[1]-a[1];});
 }
 
-function drawDonut(entries,total){
+function drawDonut(svgId, legendId, entries, centerNum){
+  var svgEl=document.getElementById(svgId);
+  var legEl=document.getElementById(legendId);
+  if(!entries||entries.length===0){
+    svgEl.innerHTML='<text x="150" y="160" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="16" font-family="Nunito,sans-serif">Sin datos aún</text>';
+    legEl.innerHTML='';
+    return;
+  }
   var cx=150,cy=150,r=120,innerR=72,gap=1.5;
-  var svg=[];
+  var svg=[],legend=[],angle=-90;
+  var total=0; for(var i=0;i<entries.length;i++) total+=entries[i][1];
+  var label=centerNum!==undefined?centerNum:total;
   svg.push('<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#1a2235" stroke-width="'+(r-innerR)+'"/>');
-  svg.push('<text x="'+cx+'" y="'+(cy-8)+'" text-anchor="middle" fill="#f1f5f9" font-size="56" font-weight="800" font-family="Nunito,sans-serif">'+total+'</text>');
+  svg.push('<text x="'+cx+'" y="'+(cy-8)+'" text-anchor="middle" fill="#f1f5f9" font-size="56" font-weight="800" font-family="Nunito,sans-serif">'+label+'</text>');
   svg.push('<text x="'+cx+'" y="'+(cy+24)+'" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="18" font-family="Nunito,sans-serif">TOTAL</text>');
-  var legend=[],angle=-90,totalMentions=0;
-  for(var i=0;i<entries.length;i++) totalMentions+=entries[i][1];
   for(var i=0;i<entries.length;i++){
-    var pct=entries[i][1]/totalMentions;
-    var sweep=pct*360-gap;
-    if(sweep<1) sweep=1;
+    var pct=entries[i][1]/total;
+    var sweep=pct*360-gap; if(sweep<1) sweep=1;
     var color=COLORS[i%COLORS.length];
     var s=angle*Math.PI/180,e=(angle+sweep)*Math.PI/180;
     var x1=cx+r*Math.cos(s),y1=cy+r*Math.sin(s);
@@ -208,30 +199,11 @@ function drawDonut(entries,total){
     var d='M '+x1+' '+y1+' A '+r+' '+r+' 0 '+la+' 1 '+x2+' '+y2+' L '+xi1+' '+yi1+' A '+innerR+' '+innerR+' 0 '+la+' 0 '+xi2+' '+yi2+' Z';
     svg.push('<path d="'+d+'" fill="'+color+'" opacity="0.95"/>');
     angle+=sweep+gap;
-    var label=entries[i][0];
-    if(label.length>30) label=label.substring(0,28)+'…';
-    legend.push('<div class="legend-item"><div class="legend-dot" style="background:'+color+'"></div><span class="legend-label">'+label+'</span><span class="legend-val">'+entries[i][1]+'</span><span class="legend-pct">('+Math.round(pct*100)+'%)</span></div>');
+    var lbl=entries[i][0]; if(lbl.length>40) lbl=lbl.substring(0,38)+'…';
+    legend.push('<div class="legend-item"><div class="legend-dot" style="background:'+color+'"></div><span class="legend-label">'+lbl+'</span><span class="legend-val">'+entries[i][1]+'</span><span class="legend-pct">('+Math.round(pct*100)+'%)</span></div>');
   }
-  document.getElementById('donut-svg').innerHTML=svg.join('');
-  document.getElementById('donut-legend').innerHTML=legend.join('');
-}
-
-function drawBars(containerId, entries, colorStart){
-  var el=document.getElementById(containerId);
-  if(!entries||entries.length===0){el.innerHTML='<div class="no-data">Sin datos aún</div>';return;}
-  var max=entries[0][1];
-  var html='';
-  for(var i=0;i<entries.length;i++){
-    var pct=max>0?Math.round((entries[i][1]/max)*100):0;
-    var color=COLORS[(i+(colorStart||0))%COLORS.length];
-    var label=entries[i][0];
-    if(label.length>55) label=label.substring(0,53)+'…';
-    html+='<div class="bar-item">'+
-      '<div class="bar-label">'+label+' <span>'+entries[i][1]+'</span></div>'+
-      '<div class="bar-track"><div class="bar-fill" style="width:'+pct+'%;background:'+color+'"></div></div>'+
-    '</div>';
-  }
-  el.innerHTML=html;
+  svgEl.innerHTML=svg.join('');
+  legEl.innerHTML=legend.join('');
 }
 
 function buildComments(rows){
@@ -241,11 +213,10 @@ function buildComments(rows){
     if(!txt||txt==='-') continue;
     var name=(rows[i][1]||'').trim().split(' ')[0]||'—';
     var d=parseSheetDate(rows[i][0]);
-    var time=d?d.toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit'}):' ';
+    var time=d?d.toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit'}):'';
     items.push('<div class="tl-item"><div class="tl-dot"></div><div class="tl-name">'+name+'<br><span style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:400">'+time+'</span></div><div class="tl-text">'+txt+'</div></div>');
   }
-  var el=document.getElementById('timeline-comments');
-  el.innerHTML=items.length?items.join(''):'<div class="no-data">Sin comentarios aún</div>';
+  document.getElementById('timeline-comments').innerHTML=items.length?items.join(''):'<div class="no-data">Sin comentarios aún</div>';
 }
 
 function fechaHoy(){
@@ -274,32 +245,17 @@ async function fetchData(){
 
 function renderDashboard(rows){
   var total=rows.length;
-  document.getElementById('kpi-total').textContent=total;
   document.getElementById('fecha-actual').textContent=fechaHoy();
 
-  // Col G (idx 6): servicios — multiselect
-  var gMap=countMap(rows,6,true);
-  var gEntries=sortedEntries(gMap);
-  drawDonut(gEntries, total);
+  drawDonut('donut-g','legend-g', sortedEntries(countMap(rows,6,true)), total);
+  drawDonut('donut-h','legend-h', sortedEntries(countMap(rows,7,false)));
+  drawDonut('donut-i','legend-i', sortedEntries(countMap(rows,8,false)));
+  drawDonut('donut-j','legend-j', sortedEntries(countMap(rows,9,false)));
 
-  // Col H (idx 7): mejor en qué
-  var hEntries=sortedEntries(countMap(rows,7,false));
-  drawBars('bars-h', hEntries, 1);
-
-  // Col I (idx 8): aporte en CRV
-  var iEntries=sortedEntries(countMap(rows,8,false));
-  drawBars('bars-i', iEntries, 3);
-
-  // Col J (idx 9): otros eventos
-  var jEntries=sortedEntries(countMap(rows,9,false));
-  drawBars('bars-j', jEntries, 5);
-
-  // Col K (idx 10): comentarios
   buildComments(rows);
 
   var now=new Date();
-  var nowStr=now.toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  document.getElementById('last-update').textContent='Actualizado '+nowStr;
+  document.getElementById('last-update').textContent='Actualizado '+now.toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
   document.getElementById('footer-info').textContent=total+' registros — '+now.toLocaleDateString('es-CL');
 }
 
